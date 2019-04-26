@@ -34,6 +34,15 @@ func (j *Job) SourceExists() bool {
 	return true
 }
 
+// ArchiveExists returns true if a job's existing archive is present
+func (j *Job) ArchiveExists() bool {
+	if _, err := os.Stat(j.ArchivePath()); os.IsNotExist(err) {
+		return false
+	}
+
+	return true
+}
+
 func (j *Job) ArchivePath() string {
 	return fmt.Sprintf("/archives/%s.tar.gz", j.Name)
 }

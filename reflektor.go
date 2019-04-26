@@ -38,6 +38,11 @@ func (r *Reflektor) ScheduleJobs() {
 	for _, job := range r.Jobs {
 		entity := r.Cron.Entry(job.ID)
 
+		if !job.ArchiveExists() {
+			go r.RunJob(job)
+			continue
+		}
+
 		log.WithFields(log.Fields{
 			"job":      job.Name,
 			"next_run": entity.Next,
