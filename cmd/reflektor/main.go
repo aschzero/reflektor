@@ -33,7 +33,7 @@ func main() {
 		Jobs: jobs,
 	}
 
-	r.RegisterJobs()
+	r.ScheduleJobs()
 
 	<-sigc
 	os.Exit(0)

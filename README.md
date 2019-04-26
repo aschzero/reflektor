@@ -56,13 +56,13 @@ When a job is ready to run, an archive of the source directory is archived in a 
 
 ## Logging
 
- When started, reflektor parses the config file and registers each job as a cron schedule. Registered job details are logged
- to stdout details including the next run time.
+ When started, reflektor parses the config file and schedules each job as a cron schedule. Job details are logged
+ to stdout including the next run time.
  
  ```bash
-INFO[0000] job registered       job=prometheus          next_run="2019-05-01 00:00:00 -0700 PDT"
-INFO[0000] job registered       job=elasticsearch       next_run="2019-04-28 00:00:00 -0700 PDT"
-INFO[0000] job registered       job=unifi_backups       next_run="2019-04-27 00:00:00 -0700 PDT"
+INFO[0000] job scheduled       job=prometheus          next_run="2019-05-01 00:00:00 -0700 PDT"
+INFO[0000] job scheduled       job=elasticsearch       next_run="2019-04-28 00:00:00 -0700 PDT"
+INFO[0000] job scheduled       job=unifi_backups       next_run="2019-04-27 00:00:00 -0700 PDT"
 ```
 
 Logs for finished running jobs include the elapsed time it took for archival:

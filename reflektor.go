@@ -14,8 +14,8 @@ type Reflektor struct {
 	Jobs []*Job
 }
 
-// RegisterJobs adds each job to the cron scheduler and starts the cron service
-func (r *Reflektor) RegisterJobs() {
+// ScheduleJobs adds each job to the cron scheduler and starts the cron service
+func (r *Reflektor) ScheduleJobs() {
 	r.Cron = cron.New()
 
 	for _, job := range r.Jobs {
@@ -26,7 +26,7 @@ func (r *Reflektor) RegisterJobs() {
 		})
 
 		if err != nil {
-			log.WithFields(log.Fields{"job": j.Name, "error": err}).Fatal("unable to register job")
+			log.WithFields(log.Fields{"job": j.Name, "error": err}).Fatal("unable to schedule job")
 			continue
 		}
 
@@ -41,7 +41,7 @@ func (r *Reflektor) RegisterJobs() {
 		log.WithFields(log.Fields{
 			"job":      job.Name,
 			"next_run": entity.Next,
-		}).Info("job registered")
+		}).Info("job scheduled")
 	}
 }
 
