@@ -2,6 +2,7 @@ package reflektor
 
 import (
 	"compress/flate"
+	"fmt"
 	"github.com/mholt/archiver"
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/robfig/cron.v2"
@@ -85,12 +86,12 @@ func (r *Reflektor) RunJob(job *Job) {
 		return
 	}
 
-	elapsed := time.Since(start)
+	elapsed := time.Since(start).Seconds()
 	cronEntity := r.Cron.Entry(job.ID)
 
 	log.WithFields(log.Fields{
 		"job":      job.Name,
-		"elapsed":  elapsed,
+		"elapsed":  fmt.Sprintf("%.2fs", elapsed),
 		"next_run": cronEntity.Next,
 	}).Info("job finished")
 }
